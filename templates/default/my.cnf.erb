@@ -214,7 +214,11 @@ innodb_buffer_pool_instances    = <%= node['mysql']['tunable']['innodb_buffer_po
 <%- end %>
 
 ## InnoDB Plugin Independent Settings
+<%- if node['mysql']['innodb_data_home_dir'] %>
+innodb_data_home_dir            = <%= node['mysql']['innodb_data_home_dir']  %>
+<% else %>
 innodb_data_home_dir            = <%= node['mysql']['data_dir']  %>
+<%- end %>
 innodb_log_group_home_dir       = <%= node['mysql']['log_dir']  %>
 <%- if node['mysql']['log_files_in_group'] %>
 innodb_log_files_in_group       = <%= node['mysql']['log_files_in_group'] %>
